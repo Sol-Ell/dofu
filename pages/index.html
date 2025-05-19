@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #table-of-entries {
+            border-style: none;
+            margin: auto;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        #table-of-entries thead th:first-child {
+            width: 70%;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="current-path" type="text" />
+    <table id="table-of-entries">
+        <thead>
+            <th>Name</th>
+            <th>Last modified</th>
+            <th>Size</th>
+        </thead>
+    </table>
+    <script type="module" src="index.js"></script>
+    <!--<script type="module">
+        class FsEntry {
+            name;
+            is_folder;
+            date;
+
+            constructor(name, is_folder, date) {
+                this.name = name;
+                this.is_folder = is_folder;
+                this.date = date;
+            }
+
+            insert_to_view() {
+                const row = document.createElement("tr");
+
+                const name = document.createElement("td");
+                const last_modified = document.createElement("td");
+                const size = document.createElement("td");
+
+                name.textContent = this.name;
+
+                row.appendChild(name);
+                row.appendChild(last_modified);
+                row.appendChild(size);
+
+                const table = document.getElementById("table-of-entries");
+                table.appendChild(row);
+            }
+        }
+        const INITIAL_PATH = "";
+
+        const getCurrentPath = () => {
+            return document.getElementById('current-path').textContent;
+        }
+
+        /**
+         * @param {string} path
+        */
+        const setCurrentPath = (path) => {
+            document.getElementById('current-path').textContent = path;
+        }
+
+        /**
+         * @param {string} path
+         * 
+         * @returns {Array<FsEntry>}
+        */
+        const fetchFsEntries = async (path) => {
+            const params = new URLSearchParams({ path: INITIAL_PATH });
+            const url = "/api/fs-entries?" + params.toString();
+            console.log(url);
+            const resp = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const entries = new Array();
+
+            if (resp.status == 200) {
+                const data = await resp.json();
+                console.log(data);
+                for (const entry of data.fs_entries) {
+                    entries.push(new FsEntry(entry.name, entry.is_folder, null));
+                }
+            }
+            console.log(resp.status);
+
+            return entries;
+        };
+
+        var entries = await fetchFsEntries(INITIAL_PATH);
+
+        for (var entry of entries) {
+            entry.insert_to_view();
+        }
+
+        console.log(entries);
+    </script>-->
+</body>
+
+</html>
